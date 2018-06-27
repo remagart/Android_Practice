@@ -26,6 +26,7 @@
             android:layout_height="match_parent"
             android:layout_weight="0"
             android:ems="10"
+            android:hint="請輸入帳號"
             android:inputType="textPersonName" />
 
     </LinearLayout>
@@ -50,7 +51,8 @@
             android:layout_height="match_parent"
             android:layout_weight="0"
             android:ems="10"
-            android:inputType="textPersonName" />
+            android:hint="請輸入密碼"
+            android:inputType="textPassword" />
 
     </LinearLayout>
 </LinearLayout>
