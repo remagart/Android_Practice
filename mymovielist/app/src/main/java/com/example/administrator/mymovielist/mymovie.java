@@ -9,6 +9,30 @@ public class mymovie {
 
     }
 
+    public String getMyname() {
+        return myname;
+    }
+
+    public void setMyname(String myname) {
+        this.myname = myname;
+    }
+
+    public String getMydate() {
+        return mydate;
+    }
+
+    public void setMydate(String mydate) {
+        this.mydate = mydate;
+    }
+
+    public String getMyintro() {
+        return myintro;
+    }
+
+    public void setMyintro(String myintro) {
+        this.myintro = myintro;
+    }
+
     public int getImgg() {
         return imgg;
     }
