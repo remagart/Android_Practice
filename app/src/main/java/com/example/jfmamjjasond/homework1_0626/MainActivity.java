@@ -29,14 +29,22 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             myinflater = getLayoutInflater();
             AlertDialog.Builder mybuilder = new AlertDialog.Builder(thisactivity);
-            mybuilder.setTitle("Hello world");
+            mybuilder.setTitle("Login");
             mybuilder.setView(myinflater.inflate(R.layout.mydialog,null));
-            mybuilder.setPositiveButton("嘿嘿", new DialogInterface.OnClickListener() {
+            mybuilder.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    
+
                 }
             });
+            mybuilder.setNegativeButton("Login", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+
+            mybuilder.show();
 
 
         }
