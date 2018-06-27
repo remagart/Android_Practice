@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         thisactivity = this;
 
         b1 = (Button)findViewById(R.id.myb1);
+        //handle要在查察
         handle = new Handler() {
             @Override
             public void handleMessage(Message msg) {
