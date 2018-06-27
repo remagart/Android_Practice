@@ -15,7 +15,8 @@ public class MainActivity extends AppCompatActivity {
     Button b1,b4,b8;
     Context thisactivity;
     String[] woman = {"nana","lili","lulu","Amy"};
-
+    //這是測試git
+    // git test2
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
