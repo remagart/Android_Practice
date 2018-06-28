@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     TextView txtTel, txtName, txtEmail;
     Context thisactivity;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch(v.getId()){
                 case R.id.myb1:
+                    mylib.add(thisactivity);
                     break;
                 case R.id.myb2:
                     break;
