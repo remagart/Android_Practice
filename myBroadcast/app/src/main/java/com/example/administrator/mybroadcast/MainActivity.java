@@ -11,8 +11,8 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
     Context thisactivity;
     Button b1;
-    private final String mymsg = "abc";
-
+    private final String mymsg = "zzzz";
+    private final String mymsg2 = "zzzz2";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,9 +30,11 @@ public class MainActivity extends AppCompatActivity {
             mybroadcastreceiver receiver = new mybroadcastreceiver();
             registerReceiver(receiver, new IntentFilter(mymsg));
             Intent i = new Intent();
-            i.setAction(mymsg);
-            sendBroadcast(i);
-
+            Intent i2 = new Intent();
+//            i.setAction(mymsg);
+//            sendBroadcast(i);
+            i2.setAction(mymsg2);
+            sendBroadcast(i2);
         }
     };
 

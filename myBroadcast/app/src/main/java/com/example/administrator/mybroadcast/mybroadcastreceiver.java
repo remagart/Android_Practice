@@ -9,8 +9,8 @@ public class mybroadcastreceiver extends BroadcastReceiver{
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if(intent.getAction().equals("abc")){
-            Toast.makeText(context, "HIHI", Toast.LENGTH_SHORT).show();
+        if(intent.getAction().equals("zzzz")){
+            Toast.makeText(context, "HIHI,this is 1", Toast.LENGTH_SHORT).show();
         }
     }
 }
