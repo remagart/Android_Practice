@@ -82,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.myb3:
                     break;
                 case R.id.myb4:
+                    //查詢
+                    mylib.search(thisactivity,m);
                     break;
                 default:
             }
