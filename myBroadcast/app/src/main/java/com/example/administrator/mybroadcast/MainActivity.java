@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     View.OnClickListener myevent = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            
+
         }
     };
 
