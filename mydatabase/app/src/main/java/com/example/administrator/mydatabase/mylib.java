@@ -20,7 +20,16 @@ public class mylib {
     }
 
     static void add(Context c,MainActivity m){
-        Toast.makeText(c, "HIHIH", Toast.LENGTH_SHORT).show();
-        m.table_name = "nnnnnm";
+        String name,tel,email;
+        name = m.editName.getText().toString();
+        tel = m.editTel.getText().toString();
+        email = m.editEmail.getText().toString();
+
+        m.sql = "INSERT INTO "+m.table_name+"(name, phone, email)VALUES(?,?,?)";
+        m.mydb.execSQL(m.sql,new Object[]{name,tel,email});
+        Toast.makeText(c, "新增成功", Toast.LENGTH_SHORT).show();
+        m.editName.setText("");
+        m.editTel.setText("");
+        m.editEmail.setText("");
     }
 }

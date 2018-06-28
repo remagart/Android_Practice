@@ -48,24 +48,24 @@ public class MainActivity extends AppCompatActivity {
 //    }
 
     public void myinit(){
-        btnCreate = (Button)findViewById(R.id.myb1);
-        btnUpdate = (Button)findViewById(R.id.myb2);
-        btnDelete = (Button)findViewById(R.id.myb3);
-        btnQuery = (Button)findViewById(R.id.myb4);
+        m.btnCreate = (Button)findViewById(R.id.myb1);
+        m.btnUpdate = (Button)findViewById(R.id.myb2);
+        m.btnDelete = (Button)findViewById(R.id.myb3);
+        m.btnQuery = (Button)findViewById(R.id.myb4);
 
-        editName = (EditText)findViewById(R.id.myeditText1);
-        editTel = (EditText)findViewById(R.id.myeditText2);
-        editEmail = (EditText)findViewById(R.id.myeditText3);
-        editQuery = (EditText)findViewById(R.id.myeditText4);
+        m.editName = (EditText)findViewById(R.id.myeditText1);
+        m.editTel = (EditText)findViewById(R.id.myeditText2);
+        m.editEmail = (EditText)findViewById(R.id.myeditText3);
+        m.editQuery = (EditText)findViewById(R.id.myeditText4);
 
-        txtName = (TextView)findViewById(R.id.mytxt1);
-        txtTel = (TextView)findViewById(R.id.mytxt2);
-        txtEmail = (TextView)findViewById(R.id.mytxt3);
+        m.txtName = (TextView)findViewById(R.id.mytxt1);
+        m.txtTel = (TextView)findViewById(R.id.mytxt2);
+        m.txtEmail = (TextView)findViewById(R.id.mytxt3);
 
-        btnCreate.setOnClickListener(myevent);
-        btnUpdate.setOnClickListener(myevent);
-        btnDelete.setOnClickListener(myevent);
-        btnQuery.setOnClickListener(myevent);
+        m.btnCreate.setOnClickListener(myevent);
+        m.btnUpdate.setOnClickListener(myevent);
+        m.btnDelete.setOnClickListener(myevent);
+        m.btnQuery.setOnClickListener(myevent);
 
     }
 
@@ -74,10 +74,8 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch(v.getId()){
                 case R.id.myb1:
-                    //mylib.add(thisactivity,m);
-
-                    //Toast.makeText(thisactivity, "zzzz"+m.table_name, Toast.LENGTH_SHORT).show();
-
+                    //新增
+                    mylib.add(thisactivity,m);
                     break;
                 case R.id.myb2:
                     break;
