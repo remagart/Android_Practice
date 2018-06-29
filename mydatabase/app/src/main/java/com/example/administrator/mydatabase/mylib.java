@@ -36,13 +36,12 @@ public class mylib {
 
     static void search(Context c,MainActivity m){
         String query;
-        int id;
         query = m.editQuery.getText().toString();
         m.sql = "SELECT * FROM " + m.table_name + " where name =?";
         Cursor cursor = m.mydb.rawQuery(m.sql,new String[]{query});
         if(cursor.getCount()>0){
             while(cursor.moveToNext()){
-                id = cursor.getInt(0);
+                m.id = cursor.getInt(0);
                 m.editName.setText(cursor.getString(1));
                 m.editTel.setText(cursor.getString(2));
                 m.editEmail.setText(cursor.getString(3));
@@ -53,4 +52,21 @@ public class mylib {
         }
 
     }
+
+    static void edit(Context c,MainActivity m){
+        String name,email,tel;
+        String id;
+        name = m.editName.getText().toString();
+        email = m.editEmail.getText().toString();
+        tel = m.editTel.getText().toString();
+        id = String.valueOf(m.id);
+        m.sql = "UPDATE "+m.table_name+" SET name=?,phone=?,email=? where _id=?;";
+        m.mydb.execSQL(m.sql,new Object[]{name,tel,email,id});
+        Toast.makeText(c, "修改完成", Toast.LENGTH_SHORT).show();
+        m.editName.setText("");
+        m.editEmail.setText("");
+        m.editTel.setText("");
+
+    }
+
 }

@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     String table_name="mytable";
     String sql;
     String path;
+    int id;
     MainActivity m;
 
     @Override
@@ -78,8 +79,12 @@ public class MainActivity extends AppCompatActivity {
                     mylib.add(thisactivity,m);
                     break;
                 case R.id.myb2:
+                    //修改
+                    mylib.edit(thisactivity,m);
+                    mylib.search(thisactivity,m);
                     break;
                 case R.id.myb3:
+                    //刪除
                     break;
                 case R.id.myb4:
                     //查詢
