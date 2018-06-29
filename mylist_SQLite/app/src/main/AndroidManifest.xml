@@ -16,7 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".edit"></activity>
+        <activity android:name=".edit" />
+        <activity
+            android:name=".show"
+            android:label="@string/title_activity_show"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
