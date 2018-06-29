@@ -14,8 +14,12 @@ public class myDBhelper extends SQLiteOpenHelper {
     final static String KEY_MYTABLE = "mytable";
     final static int KEY_MYDBVERSION = 1;
 
+    public myDBhelper(Context context){
+        super(context, KEY_MYDBNAME, null, KEY_MYDBVERSION);
+    }
+
     public myDBhelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, KEY_MYNAME, null, KEY_MYDBVERSION);
+        super(context, name, factory, version);
     }
 
     @Override
