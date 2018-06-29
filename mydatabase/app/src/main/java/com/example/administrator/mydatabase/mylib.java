@@ -69,4 +69,19 @@ public class mylib {
 
     }
 
+    static void delete(Context c,MainActivity m){
+        String id;
+        id = String.valueOf(m.id);
+        m.sql = "DELETE FROM "+m.table_name+" where _id="+id+";";
+        m.mydb.execSQL(m.sql);
+        Toast.makeText(c, "刪除完成", Toast.LENGTH_SHORT).show();
+        m.editName.setText("");
+        m.editEmail.setText("");
+        m.editTel.setText("");
+        m.txtName.setText("");
+        m.txtTel.setText("");
+        m.txtEmail.setText("");
+
+    }
+
 }

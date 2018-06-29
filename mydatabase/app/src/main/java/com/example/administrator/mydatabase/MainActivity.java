@@ -85,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.myb3:
                     //刪除
+                    mylib.delete(thisactivity,m);
+                    mylib.search(thisactivity,m);
                     break;
                 case R.id.myb4:
                     //查詢
