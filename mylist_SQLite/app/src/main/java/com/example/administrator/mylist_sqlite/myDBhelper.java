@@ -20,11 +20,19 @@ public class myDBhelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+        final String MYTABLE_CREATE;
+        MYTABLE_CREATE = "CREATE TABLE IF NOT EXISTS "+KEY_MYTABLE
+                + " ("
+                + KEY_MYID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + KEY_MYDBNAME + ","
+                + KEY_MYTEL + ","
+                + KEY_MYEMAIL + ");";
+        db.execSQL(MYTABLE_CREATE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL("DROP TABLE IF exists "+KEY_MYTABLE);
+        onCreate(db);
     }
 }
