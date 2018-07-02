@@ -8,9 +8,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,9 +49,11 @@ public class MainActivity extends AppCompatActivity {
             R.id.listviewdetail_tel,
             R.id.listviewdetail_email
         };
-
+        //SQLite 須使用 SimpleCursorAdapter做為Adapter
         mySimpleCursorAdapter = new SimpleCursorAdapter(thisactivity,R.layout.listviewdetail,mycursor,from,to,0);
         mylistview.setAdapter(mySimpleCursorAdapter);
+        //做listview每個項目的點擊處理
+        mylistview.setOnItemClickListener(myevent);
 
     }
 
@@ -73,4 +78,13 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    AdapterView.OnItemClickListener myevent = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Toast.makeText(thisactivity, String.valueOf(position+1), Toast.LENGTH_SHORT).show();
+        }
+    };
+
+
 }
