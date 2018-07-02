@@ -2,6 +2,7 @@ package com.example.administrator.mylist_sqlite;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 public class myDBAdapter {
@@ -30,6 +31,17 @@ public class myDBAdapter {
         if(mmyDBhelper!=null){
             mmyDBhelper.close();
         }
+    }
+
+    Cursor makecursor(){
+        String[] columns = new String[]{KEY_MYID,KEY_MYNAME,KEY_MYTEL,KEY_MYTEL};
+        Cursor mycursor;
+        mycursor = myDBSQLite.query(KEY_MYTABLE,columns,null,null,null,null,null);
+        if(mycursor != null){
+            mycursor.moveToFirst();
+        }
+        return mycursor;
+
     }
 
     long add(String temp_name,String temp_tel,String temp_email){
