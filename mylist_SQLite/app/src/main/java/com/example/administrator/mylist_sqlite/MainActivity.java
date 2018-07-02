@@ -28,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent();
         switch (item.getItemId()){
             case R.id.menuadd:
-                i.setClass(MainActivity.this,show.class);
+                i.putExtra("type","add");
+                i.setClass(MainActivity.this,edit.class);
                 startActivity(i);
                 break;
             default:

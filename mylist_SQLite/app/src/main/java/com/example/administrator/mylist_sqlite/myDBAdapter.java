@@ -32,6 +32,14 @@ public class myDBAdapter {
         }
     }
 
+    long add(String temp_name,String temp_tel,String temp_email){
+        my_values = new ContentValues();
+        my_values.put(KEY_MYNAME,temp_name);
+        my_values.put(KEY_MYTEL,temp_tel);
+        my_values.put(KEY_MYEMAIL,temp_email);
+
+        return myDBSQLite.insert(KEY_MYTABLE,null,my_values);
+    }
 
 
 
