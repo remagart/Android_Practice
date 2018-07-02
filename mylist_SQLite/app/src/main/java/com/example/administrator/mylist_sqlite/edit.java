@@ -1,6 +1,7 @@
 package com.example.administrator.mylist_sqlite;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +18,7 @@ public class edit extends AppCompatActivity {
     TextView title;
     Bundle bdata;
     myDBAdapter mmyDBAdapter;
+    Cursor mycursor;
 
 
     @Override
@@ -29,8 +31,12 @@ public class edit extends AppCompatActivity {
         mmyDBAdapter = new myDBAdapter(this);
 
         if (bdata.getString("type").equals("edit") ){
-            Toast.makeText(this, "HIHI this is if edit true", Toast.LENGTH_SHORT).show();
             title.setText("修改連絡人");
+            mycursor = mmyDBAdapter.querybyid(bdata.getInt("tempitemid"));
+            editxml_name.setText(mycursor.getString(1));
+            editxml_tel.setText(mycursor.getString(2));
+            editxml_email.setText(mycursor.getString(3));
+
         }
         editxml_button_OK.setOnClickListener(myevent);
 
