@@ -10,8 +10,8 @@ public class myDBAdapter {
     final static String KEY_MYID = "_id";
     final static String KEY_MYTEL = "tel";
     final static String KEY_MYEMAIL = "email";
-    final static String KEY_MYDBNAME = "youaremonkey";
-    final static String KEY_MYTABLE = "mytable";
+    final static String KEY_MYDBNAME = "youaremonkey2";
+    final static String KEY_MYTABLE = "mytable2";
 
     myDBhelper mmyDBhelper;
     SQLiteDatabase myDBSQLite;
@@ -34,7 +34,7 @@ public class myDBAdapter {
     }
 
     Cursor makecursor(){
-        String[] columns = new String[]{KEY_MYID,KEY_MYNAME,KEY_MYTEL,KEY_MYTEL};
+        String[] columns = new String[]{KEY_MYID,KEY_MYNAME,KEY_MYTEL,KEY_MYEMAIL};
         Cursor mycursor;
         mycursor = myDBSQLite.query(KEY_MYTABLE,columns,null,null,null,null,null);
         if(mycursor != null){

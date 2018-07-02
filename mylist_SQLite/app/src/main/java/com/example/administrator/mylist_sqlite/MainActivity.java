@@ -2,18 +2,22 @@ package com.example.administrator.mylist_sqlite;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
+import android.widget.SimpleCursorAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
     Context thisactivity;
     ListView mylistview;
-    myDBAdapter 
+    myDBAdapter mmyDBAdapter;
+    SimpleCursorAdapter mySimpleCursorAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,8 +25,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         thisactivity = this;
 
-        mylistview = new ListView(this);
         mylistview = findViewById(R.id.mylistview);
+        mmyDBAdapter = new myDBAdapter(thisactivity);
+
 
         mydisplaylistview();
 
@@ -30,9 +35,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void mydisplaylistview(){
+        Cursor mycursor = mmyDBAdapter.makecursor();
         String[] from = new String[]{
-
+            mmyDBAdapter.KEY_MYNAME,
+            mmyDBAdapter.KEY_MYTEL,
+            mmyDBAdapter.KEY_MYEMAIL
         };
+        int[] to = new int[]{
+            R.id.listviewdetail_name,
+            R.id.listviewdetail_tel,
+            R.id.listviewdetail_email
+        };
+
+        mySimpleCursorAdapter = new SimpleCursorAdapter(thisactivity,R.layout.listviewdetail,mycursor,from,to,0);
+        mylistview.setAdapter(mySimpleCursorAdapter);
 
     }
 

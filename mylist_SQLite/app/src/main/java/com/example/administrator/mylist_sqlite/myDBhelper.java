@@ -10,8 +10,8 @@ public class myDBhelper extends SQLiteOpenHelper {
     final static String KEY_MYID = "_id";
     final static String KEY_MYTEL = "tel";
     final static String KEY_MYEMAIL = "email";
-    final static String KEY_MYDBNAME = "youaremonkey";
-    final static String KEY_MYTABLE = "mytable";
+    final static String KEY_MYDBNAME = "youaremonkey2";
+    final static String KEY_MYTABLE = "mytable2";
     final static int KEY_MYDBVERSION = 1;
 
     public myDBhelper(Context context){
@@ -28,7 +28,7 @@ public class myDBhelper extends SQLiteOpenHelper {
         MYTABLE_CREATE = "CREATE TABLE IF NOT EXISTS "+KEY_MYTABLE
                 + " ("
                 + KEY_MYID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + KEY_MYDBNAME + ","
+                + KEY_MYNAME + ","
                 + KEY_MYTEL + ","
                 + KEY_MYEMAIL + ");";
         db.execSQL(MYTABLE_CREATE);
