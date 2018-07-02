@@ -53,6 +53,23 @@ public class myDBAdapter {
         return myDBSQLite.insert(KEY_MYTABLE,null,my_values);
     }
 
+    Cursor querybyid(int myid){
+        String[] columns = new String[]{KEY_MYID,KEY_MYNAME,KEY_MYTEL,KEY_MYEMAIL};
+        Cursor mycursor;
+        mycursor = myDBSQLite.query(
+                KEY_MYTABLE,
+                columns,
+                KEY_MYID +" == "+ myid,
+                null,
+                null,
+                null,
+                null
+        );
+        if(mycursor != null){
+            mycursor.moveToFirst();
+        }
+        return mycursor;
+    }
 
 
 

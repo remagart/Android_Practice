@@ -83,6 +83,19 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Toast.makeText(thisactivity, String.valueOf(position+1), Toast.LENGTH_SHORT).show();
+            Cursor item_cursor = (Cursor)mylistview.getItemAtPosition(position);
+            //不確定用法是不是這樣
+            if(item_cursor.getColumnIndex("name") == -1){
+                Toast.makeText(thisactivity, "此欄位不存在", Toast.LENGTH_SHORT).show();
+            }
+            int item_id = item_cursor.getInt(item_cursor.getColumnIndex("_id"));
+            Toast.makeText(thisactivity, "安安"+item_id, Toast.LENGTH_SHORT).show();
+
+            Intent i = new Intent();
+            i.putExtra("tempitemid",item_id);
+            i.setClass(thisactivity,show.class);
+            startActivity(i);
+
         }
     };
 

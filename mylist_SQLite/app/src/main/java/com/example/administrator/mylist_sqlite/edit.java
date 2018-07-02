@@ -30,6 +30,7 @@ public class edit extends AppCompatActivity {
 
         if (bdata.getString("type").equals("edit") ){
             Toast.makeText(this, "HIHI this is if edit true", Toast.LENGTH_SHORT).show();
+            title.setText("修改連絡人");
         }
         editxml_button_OK.setOnClickListener(myevent);
 
