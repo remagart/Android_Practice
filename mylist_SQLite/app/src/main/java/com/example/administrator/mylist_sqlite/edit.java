@@ -32,6 +32,7 @@ public class edit extends AppCompatActivity {
 
         if (bdata.getString("type").equals("edit") ){
             title.setText("修改連絡人");
+            editxml_button_OK.setText("修改");
             mycursor = mmyDBAdapter.querybyid(bdata.getInt("tempitemid"));
             editxml_name.setText(mycursor.getString(1));
             editxml_tel.setText(mycursor.getString(2));
@@ -71,12 +72,17 @@ public class edit extends AppCompatActivity {
                 case R.id.editxml_email:
                     break;
                 case R.id.editxml_button_OK:
-                    Toast.makeText(edit.this, "This is OK", Toast.LENGTH_SHORT).show();
                     new_name = editxml_name.getText().toString();
                     new_tel = editxml_tel.getText().toString();
                     new_email = editxml_email.getText().toString();
                     if(bdata.getString("type").equals("add")){
                         mmyDBAdapter.add(new_name,new_tel,new_email);
+                        Intent i = new Intent();
+                        i.setClass(edit.this,MainActivity.class);
+                        startActivity(i);
+                    }
+                    else if(bdata.getString("type").equals("edit")){
+                        mmyDBAdapter.update(new_name,new_tel,new_email,bdata.getInt("tempitemid"));
                         Intent i = new Intent();
                         i.setClass(edit.this,MainActivity.class);
                         startActivity(i);
