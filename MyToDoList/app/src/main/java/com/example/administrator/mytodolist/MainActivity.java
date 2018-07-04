@@ -2,6 +2,7 @@ package com.example.administrator.mytodolist;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Calendar;
@@ -18,6 +20,7 @@ import java.util.Calendar;
 public class MainActivity extends AppCompatActivity {
     Context thisactivity;
     Button mybutton_add;
+    TextView mypagetitle;
     EditText mytitle,mycontent;
     String mytitle_s,mycontent_s,mydate_s;
     myDBAdapter mmyDBAdapter;
@@ -34,7 +37,14 @@ public class MainActivity extends AppCompatActivity {
         mmyDBAdapter = new myDBAdapter(thisactivity);
         if(firstopencheck == false) {
             if (mydata.get("type").equals("update")) {
+                mypagetitle.setText("修改變條");
+                mybutton_add.setText("修改變條");
+                int tempid;
+                tempid = mydata.getInt("_id");
+                Cursor mycursor = mmyDBAdapter.querybyid(tempid);
 
+                mytitle.setText(mycursor.getString(1));
+                mycontent.setText(mycursor.getString(3));
             }
         }
 
@@ -57,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void init(){
+        mypagetitle = (TextView)findViewById(R.id.mainxml_pagetitle);
         mybutton_add = (Button)findViewById(R.id.mainxml_button_add);
         mytitle = (EditText)findViewById(R.id.mainxml_editview_title);
         mycontent = (EditText)findViewById(R.id.mainxml_editview_content);

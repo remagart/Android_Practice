@@ -12,6 +12,8 @@ public class myDBAdapter {
     final static String KEY_mytitle = "title";
     final static String KEY_mycontent = "content";
 
+    String[] columns;
+
     SQLiteDatabase mySQLiteDB;
     myDBHelper mmyDBHelper;
     Context mycontext;
@@ -25,6 +27,7 @@ public class myDBAdapter {
     public void open(){
         mmyDBHelper = new myDBHelper(mycontext);
         mySQLiteDB = mmyDBHelper.getWritableDatabase();
+        columns = new String[]{KEY_myid,KEY_mytitle,KEY_mydate,KEY_mycontent};
     }
     public void close(){
         if(mmyDBHelper != null){
@@ -34,7 +37,6 @@ public class myDBAdapter {
 //MyToDoList_v9:製造查詢後的結果得到Cursor物件
     Cursor makecursor(){
         Cursor mycursor;
-        String[] columns = new String[]{KEY_myid,KEY_mytitle,KEY_mydate,KEY_mycontent};
         mycursor = mySQLiteDB.query(KEY_myname_of_table,
                                     columns,
                                     null,
@@ -56,6 +58,20 @@ public class myDBAdapter {
         myvalies.put(KEY_mydate,date);
 
         return mySQLiteDB.insert(KEY_myname_of_table,null,myvalies);
+    }
+    Cursor querybyid(int id){
+        Cursor mycursor = mySQLiteDB.query(KEY_myname_of_table,
+                                            columns,
+                                            KEY_myid + " == " + id,
+                                            null,
+                                            null,
+                                            null,
+                                            null
+                                            );
+        if(mycursor != null){
+            mycursor.moveToFirst();
+        }
+        return mycursor;
     }
 
 
