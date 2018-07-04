@@ -30,6 +30,14 @@ public class myDBAdapter {
             mySQLiteDB.close();
         }
     }
+    long add(String title,String content,String date){
+        myvalies = new ContentValues();
+        myvalies.put(KEY_mytitle,title);
+        myvalies.put(KEY_mycontent,content);
+        myvalies.put(KEY_mydate,date);
+
+        return mySQLiteDB.insert(KEY_myname_of_table,null,myvalies);
+    }
 
 
 }
