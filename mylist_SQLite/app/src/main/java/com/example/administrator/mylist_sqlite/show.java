@@ -8,9 +8,14 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.zip.Inflater;
 
 public class show extends AppCompatActivity {
 
@@ -64,5 +69,28 @@ public class show extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater myinflater = getMenuInflater();
+        myinflater.inflate(R.menu.edit,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        Intent i = new Intent();
+        switch (item.getItemId()){
+            case R.id.menudelete:
+                mmyDBAdapter.delete(showxml_name.toString(),showxml_tel.toString(),show_email.toString(),myid);
+                i.setClass(show.this,MainActivity.class);
+                startActivity(i);
+                break;
+
+            default:
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }

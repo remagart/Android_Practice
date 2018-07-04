@@ -80,6 +80,9 @@ public class myDBAdapter {
         return myDBSQLite.update(KEY_MYTABLE,my_values,KEY_MYID + " == "+temp_id,null);
     }
 
+    long delete(String temp_name,String temp_tel,String temp_email,int temp_id){
+        return myDBSQLite.delete(KEY_MYTABLE,KEY_MYID+" == "+temp_id,null);
+    }
 
 
 }

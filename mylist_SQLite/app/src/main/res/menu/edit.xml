@@ -3,8 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menuedit"
+        android:id="@+id/menudelete"
         android:icon="@android:drawable/ic_menu_edit"
-        android:title="修改"
-        app:showAsAction="always" />
+        android:title="刪除"
+        app:showAsAction="never" />
 </menu>
