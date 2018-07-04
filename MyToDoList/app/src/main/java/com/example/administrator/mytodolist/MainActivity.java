@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     String mytitle_s,mycontent_s,mydate_s;
     myDBAdapter mmyDBAdapter;
     Calendar mycalendar;
+    Bundle mydata;
+    static boolean firstopencheck = true; //MyToDoList_v12:因為一開app就要判斷Extra的值
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +32,13 @@ public class MainActivity extends AppCompatActivity {
         thisactivity = this;
         init();
         mmyDBAdapter = new myDBAdapter(thisactivity);
+        if(firstopencheck == false) {
+            if (mydata.get("type").equals("update")) {
 
+            }
+        }
 
-
+        firstopencheck = false;
     }
 
     @Override
@@ -54,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
         mybutton_add = (Button)findViewById(R.id.mainxml_button_add);
         mytitle = (EditText)findViewById(R.id.mainxml_editview_title);
         mycontent = (EditText)findViewById(R.id.mainxml_editview_content);
+        //MyToDoList_v12:沒辦法用我設定的thisactivity，可能是Context類別沒有getIntent()的方法
+        mydata = MainActivity.this.getIntent().getExtras();
 
         mybutton_add.setOnClickListener(myevent);
     }

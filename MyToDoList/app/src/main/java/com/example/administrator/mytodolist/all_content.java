@@ -94,7 +94,11 @@ public class all_content extends AppCompatActivity {
                 Toast.makeText(thisactivity, "沒有資料", Toast.LENGTH_SHORT).show();
             }
             int temp_id = itemcursor.getInt(itemcursor.getColumnIndex("_id"));
-
+            Intent i = new Intent();
+            i.putExtra("type","update");
+            i.putExtra("_id",temp_id);
+            i.setClass(thisactivity,MainActivity.class);
+            startActivity(i);
         }
     };
 
