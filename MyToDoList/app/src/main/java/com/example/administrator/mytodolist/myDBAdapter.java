@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
 
 public class myDBAdapter {
     final static String KEY_myname_of_table = "thisisToDoListTable";
@@ -74,5 +75,16 @@ public class myDBAdapter {
         return mycursor;
     }
 
+    long update(String title,String content,String date,int id){
+        myvalies = new ContentValues();
+        myvalies.put(KEY_mytitle,title);
+        myvalies.put(KEY_mycontent,content);
+        myvalies.put(KEY_mydate,date);
+        return mySQLiteDB.update(KEY_myname_of_table,
+                                 myvalies,
+                                 KEY_myid + " == " + id,
+                                 null
+                                );
+    }
 
 }

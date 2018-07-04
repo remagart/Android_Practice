@@ -29,7 +29,6 @@ public class all_content extends AppCompatActivity {
         setContentView(R.layout.activity_all_content);
         thisactivity = this;
         init();
-
         mmyDBAdapter = new myDBAdapter(thisactivity);
         fab.setOnClickListener(myevent);
         mydisplaylistview();
@@ -77,6 +76,7 @@ public class all_content extends AppCompatActivity {
             Intent i = new Intent();
             switch(v.getId()){
                 case R.id.fab:
+                    i.putExtra("type","add");
                     i.setClass(thisactivity,MainActivity.class);
                     startActivity(i);
                     break;

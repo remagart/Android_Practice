@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     myDBAdapter mmyDBAdapter;
     Calendar mycalendar;
     Bundle mydata;
-    static boolean firstopencheck = true; //MyToDoList_v12:因為一開app就要判斷Extra的值
+    static public boolean firstopencheck = true; //MyToDoList_v12:因為一開app就要判斷Extra的值
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        firstopencheck = false;
     }
 
     @Override
@@ -89,8 +88,20 @@ public class MainActivity extends AppCompatActivity {
                     mydate_s = String.valueOf(mycalendar.get(Calendar.YEAR))
                             + "-" + String.valueOf(mycalendar.get(Calendar.MONTH)+1)
                             + "-" + String.valueOf(mycalendar.get(Calendar.DATE));
-                    mmyDBAdapter.add(mytitle_s,mycontent_s,mydate_s);
-                    Toast.makeText(thisactivity, "已新增喔~", Toast.LENGTH_SHORT).show();
+                    if(firstopencheck == true){
+                        mmyDBAdapter.add(mytitle_s,mycontent_s,mydate_s);
+                        Toast.makeText(thisactivity, "已新增喔~", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                         if(mydata.get("type").equals("add")) {
+                             mmyDBAdapter.add(mytitle_s, mycontent_s, mydate_s);
+                             Toast.makeText(thisactivity, "已新增喔~", Toast.LENGTH_SHORT).show();
+                         }
+                         else if(mydata.get("type").equals("update")) {
+                            mmyDBAdapter.update(mytitle_s, mycontent_s, mydate_s, mydata.getInt("_id"));
+                            Toast.makeText(thisactivity, "已修改喔~", Toast.LENGTH_SHORT).show();
+                        }
+                    }
                     i.setClass(thisactivity,all_content.class);
                     startActivity(i);
 
@@ -98,6 +109,8 @@ public class MainActivity extends AppCompatActivity {
                 default:
 
             }
+            //MyToDoList_v14:因為button這邊也會做到extra的判斷，所以放到這裡，按完button後才會改
+            firstopencheck = false;
         }
     };
 
