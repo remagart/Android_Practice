@@ -9,8 +9,10 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
 public class all_content extends AppCompatActivity {
     Context thisactivity;
@@ -63,6 +65,8 @@ public class all_content extends AppCompatActivity {
                                                         0
                                                         );
         mylist.setAdapter(mySimpleCursorAdapter);
+        //MyToDoList_v11:點擊item事件處理　
+        mylist.setOnItemClickListener(myitemevent);
     }
 
 
@@ -78,6 +82,18 @@ public class all_content extends AppCompatActivity {
                     break;
                 default:
             }
+
+        }
+    };
+//MyToDoList_v11:點擊item事件處理
+    AdapterView.OnItemClickListener myitemevent = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Cursor itemcursor = (Cursor) mylist.getItemAtPosition(position);
+            if(itemcursor.getColumnIndex("_id") == -1){
+                Toast.makeText(thisactivity, "沒有資料", Toast.LENGTH_SHORT).show();
+            }
+            int temp_id = itemcursor.getInt(itemcursor.getColumnIndex("_id"));
 
         }
     };
