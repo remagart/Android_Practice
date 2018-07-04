@@ -86,5 +86,12 @@ public class myDBAdapter {
                                  null
                                 );
     }
+    long delete(int id){
+
+        return mySQLiteDB.delete(KEY_myname_of_table,
+                                KEY_myid + " == " + id,
+                                null
+                                );
+    }
 
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/checkxml_menu_checkanddelete"
+        app:showAsAction="never"
+        android:enabled="true"
+        android:title="查看所有便條"
+        android:visible="true" />
+    <item
+        android:id="@+id/checkxml_menu_delete"
+        android:enabled="true"
+        android:title="刪除"
+        android:visible="true"
+        app:showAsAction="never" />
+</menu>

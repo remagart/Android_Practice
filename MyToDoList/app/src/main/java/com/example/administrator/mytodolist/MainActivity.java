@@ -53,13 +53,34 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater myinflater = getMenuInflater();
-        myinflater.inflate(R.menu.check,menu);
+        if(firstopencheck == true){
+            myinflater.inflate(R.menu.check,menu);
+        }
+        else{
+            if(mydata.get("type").equals("add")){
+                myinflater.inflate(R.menu.check,menu);
+            }
+            else if(mydata.get("type").equals("update")){
+                myinflater.inflate(R.menu.checkanddelete,menu);
+            }
+        }
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent i = new Intent();
+        switch(item.getItemId()){
+            case R.id.checkxml_menu_check:
+            case R.id.checkxml_menu_checkanddelete:
+                break;
+            case R.id.checkxml_menu_delete:
+                mmyDBAdapter.delete(mydata.getInt("_id"));
+                Toast.makeText(thisactivity, "已刪除!!", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+
+        }
         i.setClass(thisactivity,all_content.class);
         startActivity(i);
         return super.onOptionsItemSelected(item);
