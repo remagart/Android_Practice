@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
             switch(v.getId()){
                 case R.id.mainxml_button_add:
                     mytitle_s = mytitle.getText().toString();
-                    mycontent_s = mytitle.getText().toString();
+                    mycontent_s = mycontent.getText().toString();
                     mycalendar = Calendar.getInstance();
                     mydate_s = String.valueOf(mycalendar.get(Calendar.YEAR))
                             + "-" + String.valueOf(mycalendar.get(Calendar.MONTH)+1)

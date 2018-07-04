@@ -2,6 +2,7 @@ package com.example.administrator.mytodolist;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 public class myDBAdapter {
@@ -30,6 +31,24 @@ public class myDBAdapter {
             mySQLiteDB.close();
         }
     }
+//MyToDoList_v9:製造查詢後的結果得到Cursor物件
+    Cursor makecursor(){
+        Cursor mycursor;
+        String[] columns = new String[]{KEY_myid,KEY_mytitle,KEY_mydate,KEY_mycontent};
+        mycursor = mySQLiteDB.query(KEY_myname_of_table,
+                                    columns,
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    null
+                                    );
+        if(mycursor != null){
+            mycursor.moveToFirst();
+        }
+        return mycursor;
+    }
+
     long add(String title,String content,String date){
         myvalies = new ContentValues();
         myvalies.put(KEY_mytitle,title);
