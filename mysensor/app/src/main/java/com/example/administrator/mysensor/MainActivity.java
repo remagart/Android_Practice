@@ -19,6 +19,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     //mysensor_v3:TYPE_ACCELEROMETER,TYPE_MAGNETIC_FIELD
     Sensor my_acc_Sensor,my_mag_Sensor;
 
+    float mycurrentdegree = 0f;
+    float[] my_acc_Values = new float[3];
+    float[] my_mag_Values = new float[3];
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +45,20 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         my_acc_Sensor = mySensorManger.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         my_mag_Sensor = mySensorManger.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mySensorManger.registerListener(this,my_acc_Sensor,mySensorManger.SENSOR_DELAY_NORMAL);
+        mySensorManger.registerListener(this,my_mag_Sensor,mySensorManger.SENSOR_DELAY_NORMAL);
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mySensorManger.unregisterListener(this);
     }
 
     @Override
