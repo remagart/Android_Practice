@@ -1,6 +1,7 @@
 package com.example.administrator.myspinner_for_sandboxtest;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +40,7 @@ public class mybaseadapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        mybasecolor color = (mybasecolor) getItem(position);
+        mybasecolor mmmcolor = (mybasecolor) getItem(position);
         ImageView myimage;
         TextView mytxt;
 
@@ -48,8 +49,9 @@ public class mybaseadapter extends BaseAdapter {
         myimage = (ImageView)v.findViewById(R.id.listdetailxml_imgview_mycolor);
         mytxt = (TextView)v.findViewById(R.id.listdetailxml_txtview_mytext);
 
-        mytxt.setText(color.getName());
-        myimage.setImageResource(color.getColor());
+        mytxt.setText(mmmcolor.getName());
+        myimage.setBackgroundColor(Color.parseColor(mmmcolor.getColor()));
+
 
 
         return v;

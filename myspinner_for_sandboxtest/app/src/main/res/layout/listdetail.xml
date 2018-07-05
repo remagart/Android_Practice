@@ -16,8 +16,7 @@
             android:id="@+id/listdetailxml_imgview_mycolor"
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:layout_weight="1"
-            app:srcCompat="@android:color/holo_blue_light" />
+            android:layout_weight="1" />
 
         <TextView
             android:id="@+id/listdetailxml_txtview_mytext"

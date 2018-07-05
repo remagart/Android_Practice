@@ -9,15 +9,25 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     Spinner myspinner;
-    ArrayAdapter<CharSequence> myAdapter;
+    ArrayList<mybasecolor> myall;
+    mybaseadapter mmyAdapter;
+    //ArrayAdapter<CharSequence> myAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
 
-        myAdapter = ArrayAdapter.createFromResource(this,R.array.colorr,android.R.layout.simple_spinner_item);
-        myspinner.setAdapter(myAdapter);
+        myall = new ArrayList<>();
+
+        myall.add(new mybasecolor("#FFFFFF","黑的"));
+        myall.add(new mybasecolor("#AA3939","紅的"));
+        myall.add(new mybasecolor("#479030","綠的"));
+
+        mmyAdapter = new mybaseadapter(this,myall);
+        myspinner.setAdapter(mmyAdapter);
+        //myAdapter = ArrayAdapter.createFromResource(this,R.array.colorr,android.R.layout.simple_spinner_item);
+        //myspinner.setAdapter(myAdapter);
 
     }
 
