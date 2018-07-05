@@ -7,6 +7,8 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -63,7 +65,23 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-
+        float degree = Math.round(event.values[0]);
+        mytitle.setText(String.valueOf(degree));
+        RotateAnimation ra = new RotateAnimation(mycurrentdegree,
+                                                degree,
+                                                 Animation.RELATIVE_TO_SELF,0.5f,
+                                                 Animation.RELATIVE_TO_SELF,0.5f
+                                                );
+        myimg.startAnimation(ra);
+        ra.setDuration(210);
+        ra.setFillAfter(true);
+        mycurrentdegree = degree;
+        if(event.sensor.getType() == Sensor.TYPE_ACCELEROMETER){
+            my_acc_Values = event.values;
+        }
+        if(event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD){
+            my_mag_Values = event.values;
+        }
     }
 
     @Override
