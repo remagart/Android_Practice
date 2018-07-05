@@ -1,21 +1,21 @@
 package com.example.administrator.myspinner_for_sandboxtest;
 
 public class mybasecolor {
-    private String color;
+    private int color;
     private String name;
     mybasecolor(){
 
     }
-    mybasecolor(String temp_color,String temp_name){
+    mybasecolor(int temp_color,String temp_name){
         this.color = temp_color;
         this.name = temp_name;
     }
 
-    public String getColor() {
+    public int getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(int color) {
         this.color = color;
     }
 

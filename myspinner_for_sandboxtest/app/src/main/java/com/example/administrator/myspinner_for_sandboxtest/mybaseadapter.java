@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -20,25 +22,36 @@ public class mybaseadapter extends BaseAdapter {
     }
 
 
-
-
     @Override
     public int getCount() {
-        return 0;
+        return myeachcolor.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return myeachcolor.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return myeachcolor.indexOf(position);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        return null;
+        mybasecolor color = (mybasecolor) getItem(position);
+        ImageView myimage;
+        TextView mytxt;
+
+        View v = myinflater.inflate(R.layout.listdetail,null);
+
+        myimage = (ImageView)v.findViewById(R.id.listdetailxml_imgview_mycolor);
+        mytxt = (TextView)v.findViewById(R.id.listdetailxml_txtview_mytext);
+
+        mytxt.setText(color.getName());
+        myimage.setImageResource(color.getColor());
+
+
+        return v;
     }
 }
