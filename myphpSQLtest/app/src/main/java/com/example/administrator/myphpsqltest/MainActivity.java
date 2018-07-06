@@ -1,8 +1,12 @@
 package com.example.administrator.myphpsqltest;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -47,4 +51,18 @@ public class MainActivity extends AppCompatActivity {
         nodata = (TextView)findViewById(R.id.mainxml_textview_nodata);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater myinflater = getMenuInflater();
+        myinflater.inflate(R.menu.mytoadd,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent i = new Intent();
+        i.setClass(thisactivity,edit.class);
+        startActivity(i);
+        return super.onOptionsItemSelected(item);
+    }
 }
