@@ -9,6 +9,14 @@ public class mycontact {
     private String myemail;
     private String mybirth;
 
+    mycontact(){}
+    mycontact(String name,String tel,String email,String birth){
+        myname = name;
+        mytel = tel;
+        myemail = email;
+        mybirth = birth;
+    }
+
     public Bitmap getMyimg() {
         return myimg;
     }
