@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     mycontactAdapter mmycontactAdapter;
     ListView mylist;
     TextView nodata;
-
+    myconnect mmyconnect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         thisactivity = this;
         init();
+        mmyconnect = new myconnect(thisactivity);
+        mmyconnect.execute("https://android-online.000webhostapp.com/db_connect.php");
 
         myallcontact = new ArrayList<mycontact>();
         myallcontact.add(new mycontact("aaa","bbb","ccc","ddd"));
