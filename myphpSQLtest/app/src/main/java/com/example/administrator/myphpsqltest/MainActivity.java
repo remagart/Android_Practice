@@ -43,16 +43,16 @@ public class MainActivity extends AppCompatActivity {
 
         // myallcontact.add(new mycontact("aaa","bbb","ccc","ddd"));
 
-//        mmycontactAdapter = new mycontactAdapter(thisactivity,myallcontact);
-//        mylist.setAdapter(mmycontactAdapter);
-//        if(mmycontactAdapter.getCount()==0){
-//            mylist.setVisibility(View.INVISIBLE);
-//            nodata.setVisibility(View.VISIBLE);
-//        }
-//        else{
-//            mylist.setVisibility(View.VISIBLE);
-//            nodata.setVisibility(View.INVISIBLE);
-//        }
+        mmycontactAdapter = new mycontactAdapter(thisactivity,myallcontact);
+        mylist.setAdapter(mmycontactAdapter);
+        if(mmycontactAdapter.getCount()==0){
+            mylist.setVisibility(View.INVISIBLE);
+            nodata.setVisibility(View.VISIBLE);
+        }
+        else{
+            mylist.setVisibility(View.VISIBLE);
+            nodata.setVisibility(View.INVISIBLE);
+        }
 
 
     }

@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -51,7 +52,7 @@ public class myconnect extends AsyncTask<String,Void,ArrayList<mycontact>> {
             JSONArray address = new JSONArray(JSONResponse);
             for(int i=0;i<address.length();i++){
                 if(address.getJSONObject(i)!=null){
-                    //all.add();
+                    all.add(convert(address.getJSONObject(i)));
                 }
             }
 
@@ -66,7 +67,7 @@ public class myconnect extends AsyncTask<String,Void,ArrayList<mycontact>> {
             e.printStackTrace();
         }
 
-        return null;
+        return all;
     }
 
     @Override
@@ -83,6 +84,14 @@ public class myconnect extends AsyncTask<String,Void,ArrayList<mycontact>> {
 
     }
 
-    
+    mycontact convert(JSONObject jobj) throws JSONException {
+        String name,tel,email,birth;
+        name = jobj.getString("Name");
+        tel = jobj.getString("Phone");
+        email = jobj.getString("Email");
+        birth = jobj.getString("Birthday");
+
+        return new mycontact(name,tel,email,birth);
+    }
 
 }
