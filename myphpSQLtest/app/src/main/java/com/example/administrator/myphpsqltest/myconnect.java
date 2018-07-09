@@ -42,19 +42,18 @@ public class myconnect extends AsyncTask<String,Void,ArrayList<mycontact>> {
             con.setRequestMethod("GET");
             con.connect();
             InputStream in = con.getInputStream();
-//            byte[] b = new byte[1024];
-//            ByteArrayOutputStream out = new ByteArrayOutputStream();
-//            while(in.read(b) != -1){
-//                out.write(b);
-//            }
-//            String JSONResponse = new String(out.toByteArray());
-//            Toast.makeText(thisactivity, JSONResponse, Toast.LENGTH_SHORT).show();
-//            JSONArray address = new JSONArray(JSONResponse);
-//            for(int i=0;i<address.length();i++){
-//                if(address.getJSONObject(i)!=null){
-//                    all.add();
-//                }
-//            }
+            byte[] b = new byte[1024];
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            while(in.read(b) != -1){
+                out.write(b);
+            }
+            String JSONResponse = new String(out.toByteArray());
+            JSONArray address = new JSONArray(JSONResponse);
+            for(int i=0;i<address.length();i++){
+                if(address.getJSONObject(i)!=null){
+                    //all.add();
+                }
+            }
 
 
         } catch (MalformedURLException e) {
@@ -63,9 +62,9 @@ public class myconnect extends AsyncTask<String,Void,ArrayList<mycontact>> {
          catch (IOException e) {
             e.printStackTrace();
         }
-//        catch (JSONException e) {
-//            e.printStackTrace();
-//        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         return null;
     }
@@ -83,4 +82,7 @@ public class myconnect extends AsyncTask<String,Void,ArrayList<mycontact>> {
         mydialog.dismiss();
 
     }
+
+    
+
 }
