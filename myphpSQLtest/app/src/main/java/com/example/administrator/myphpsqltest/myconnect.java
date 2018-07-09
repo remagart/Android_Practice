@@ -3,6 +3,7 @@ package com.example.administrator.myphpsqltest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -18,6 +19,8 @@ import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
 
+import static android.content.ContentValues.TAG;
+
 public class myconnect extends AsyncTask<String,Void,ArrayList<mycontact>> {
     ProgressDialog mydialog;
     Context thisactivity;
@@ -30,20 +33,22 @@ public class myconnect extends AsyncTask<String,Void,ArrayList<mycontact>> {
     @Override
     protected ArrayList<mycontact> doInBackground(String... temp) {
         ArrayList<mycontact> all = new ArrayList<mycontact>();
-        URL u;
+        URL u =null;
+        //Toast.makeText(thisactivity, "HUAHUA", Toast.LENGTH_SHORT).show();
+        Log.e("aaaa", "doInBackground: ssss");
         try {
             u = new URL(temp[0]);
             HttpURLConnection con = (HttpURLConnection) u.openConnection();
             con.setRequestMethod("GET");
             con.connect();
             InputStream in = con.getInputStream();
-            byte[] b = new byte[1024];
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
-            while(in.read(b) != -1){
-                out.write(b);
-            }
-            String JSONResponse = new String(out.toByteArray());
-            Toast.makeText(thisactivity, JSONResponse, Toast.LENGTH_SHORT).show();
+//            byte[] b = new byte[1024];
+//            ByteArrayOutputStream out = new ByteArrayOutputStream();
+//            while(in.read(b) != -1){
+//                out.write(b);
+//            }
+//            String JSONResponse = new String(out.toByteArray());
+//            Toast.makeText(thisactivity, JSONResponse, Toast.LENGTH_SHORT).show();
 //            JSONArray address = new JSONArray(JSONResponse);
 //            for(int i=0;i<address.length();i++){
 //                if(address.getJSONObject(i)!=null){
@@ -54,11 +59,13 @@ public class myconnect extends AsyncTask<String,Void,ArrayList<mycontact>> {
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
-        } catch (IOException e) {
+        }
+         catch (IOException e) {
             e.printStackTrace();
-        } //catch (JSONException e) {
-            //e.printStackTrace();
-      //  }
+        }
+//        catch (JSONException e) {
+//            e.printStackTrace();
+//        }
 
         return null;
     }
@@ -66,7 +73,7 @@ public class myconnect extends AsyncTask<String,Void,ArrayList<mycontact>> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        mydialog.setTitle("下載資料中...");
+        mydialog.setMessage("下載資料中...");
         mydialog.show();
     }
 

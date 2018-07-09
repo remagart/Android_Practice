@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 import java.util.zip.Inflater;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,21 +30,29 @@ public class MainActivity extends AppCompatActivity {
         thisactivity = this;
         init();
         mmyconnect = new myconnect(thisactivity);
-        mmyconnect.execute("https://android-online.000webhostapp.com/db_connect.php");
+        //myallcontact = new ArrayList<mycontact>();
 
-        myallcontact = new ArrayList<mycontact>();
-        myallcontact.add(new mycontact("aaa","bbb","ccc","ddd"));
+        try {
+            myallcontact = mmyconnect.execute("https://empurpled-nomenclat.000webhostapp.com/php/db_connect.php").get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
 
-        mmycontactAdapter = new mycontactAdapter(thisactivity,myallcontact);
-        mylist.setAdapter(mmycontactAdapter);
-        if(mmycontactAdapter.getCount()==0){
-            mylist.setVisibility(View.INVISIBLE);
-            nodata.setVisibility(View.VISIBLE);
-        }
-        else{
-            mylist.setVisibility(View.VISIBLE);
-            nodata.setVisibility(View.INVISIBLE);
-        }
+
+        // myallcontact.add(new mycontact("aaa","bbb","ccc","ddd"));
+
+//        mmycontactAdapter = new mycontactAdapter(thisactivity,myallcontact);
+//        mylist.setAdapter(mmycontactAdapter);
+//        if(mmycontactAdapter.getCount()==0){
+//            mylist.setVisibility(View.INVISIBLE);
+//            nodata.setVisibility(View.VISIBLE);
+//        }
+//        else{
+//            mylist.setVisibility(View.VISIBLE);
+//            nodata.setVisibility(View.INVISIBLE);
+//        }
 
 
     }
