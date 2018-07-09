@@ -4,8 +4,10 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -16,7 +18,6 @@ public class myinsert extends AsyncTask<String,Void,String> {
     String crlf = "\r\n";
     String twoHyphens = "--";
     String boundary =  "*****";
-    int index;
     String[] data;
 
     public myinsert(Context c,String[] temp_data) {
@@ -33,44 +34,51 @@ public class myinsert extends AsyncTask<String,Void,String> {
             conn.setRequestMethod("POST");
             //conn.connect();
             conn.setDoOutput(true);
-
+            conn.setDoInput(true);
+            conn.setRequestProperty("Connection", "Keep-Alive");
+            conn.setRequestProperty("Cache-Control", "no-cache");
+            conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + this.boundary);
+            conn.setRequestProperty("Charset", "UTF-8");
             DataOutputStream request = new DataOutputStream(conn.getOutputStream());
 ////////////////////////////////////////////////
             request.writeBytes(this.twoHyphens + this.boundary + this.crlf);
-            request.writeBytes("Content-Disposition: form-data; name=\"ContactID\"" + "\"" + this.crlf);
-            request.writeBytes(this.crlf);
-            Log.i("index=====>",String.valueOf(index));
-            request.writeBytes(String.valueOf(index));
-            request.writeBytes(this.crlf);
-
-            request.writeBytes(this.twoHyphens + this.boundary + this.crlf);
             request.writeBytes("Content-Disposition: form-data; name=\"Name\"" + "\"" + this.crlf);
             request.writeBytes(this.crlf);
-            request.writeBytes(data[1]);
+            request.writeBytes(data[0]);
             request.writeBytes(this.crlf);
             request.writeBytes(this.twoHyphens + this.boundary + this.crlf);
             request.writeBytes("Content-Disposition: form-data; name=\"Phone\"" + "\"" + this.crlf);
             request.writeBytes(this.crlf);
-            request.writeBytes(data[2]);
+            request.writeBytes(data[1]);
             request.writeBytes(this.crlf);
             request.writeBytes(this.twoHyphens + this.boundary + this.crlf);
             request.writeBytes("Content-Disposition: form-data; name=\"Email\"" + "\"" + this.crlf);
             request.writeBytes(this.crlf);
-            request.writeBytes(data[3]);
+            request.writeBytes(data[2]);
             request.writeBytes(this.crlf);
             request.writeBytes(this.twoHyphens + this.boundary + this.crlf);
             request.writeBytes("Content-Disposition: form-data; name=\"Birthday\"" + "\"" + this.crlf);
             request.writeBytes(this.crlf);
-            request.writeBytes(data[4]);
+            request.writeBytes(data[3]);
             request.writeBytes(this.crlf);
-            request.writeBytes(this.twoHyphens + this.boundary + this.twoHyphens + this.crlf);
-
+            request.writeBytes(this.twoHyphens + this.boundary + this.crlf);
+            request.writeBytes(this.crlf);
             request.flush();
             request.close();
 
             conn.connect();
+/////////////////////////////////////
+            InputStream is = conn.getInputStream();
+            // Read the stream
+            byte[] b = new byte[1024];
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            while (is.read(b) != -1)
+                baos.write(b);
 
-            
+            String response = new String(baos.toByteArray());
+            Log.i("response=", response);
+            return response;
+
 
         } catch (MalformedURLException e) {
             e.printStackTrace();

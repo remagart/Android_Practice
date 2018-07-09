@@ -3,6 +3,7 @@ package com.example.administrator.myphpsqltest;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,13 +22,17 @@ public class edit extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
         thisactivity = this;
-        all = new String[5];
+
         init();
+        all = new String[4];
 
         btn_OK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(thisactivity, "HIHI", Toast.LENGTH_SHORT).show();
+                all[0]= newname.getText().toString();
+                all[1] = newtel.getText().toString();
+                all[2] = newmail.getText().toString();
+                all[3] = newbirth.getText().toString();
                 mmyinsert = new myinsert(thisactivity,all);
                 mmyinsert.execute("https://empurpled-nomenclat.000webhostapp.com/php/insert.php");
             }
@@ -42,9 +47,7 @@ public class edit extends AppCompatActivity {
         newbirth = (EditText)findViewById(R.id.editxml_birth);
         newmail = (EditText)findViewById(R.id.editxml_mail);
         btn_OK = (Button)findViewById(R.id.editxml_btn_confirm);
-        all[1] = newname.getText().toString();
-        all[2] = newtel.getText().toString();
-        all[3] = newmail.getText().toString();
-        all[4] = newbirth.getText().toString();
+
+
     }
 }
