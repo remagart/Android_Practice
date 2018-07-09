@@ -24,6 +24,7 @@ public class myinsert extends AsyncTask<String,Void,String> {
             HttpURLConnection conn = (HttpURLConnection) u.openConnection();
             conn.setRequestMethod("POST");
             conn.connect();
+            conn.setDoOutput(true);
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
