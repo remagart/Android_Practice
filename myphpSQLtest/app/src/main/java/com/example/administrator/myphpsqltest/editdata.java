@@ -3,9 +3,12 @@ package com.example.administrator.myphpsqltest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -62,6 +65,16 @@ public class editdata extends AsyncTask<String,Void,String> {
             bw.write(name);
             bw.flush();
             bw.close();
+            //接收來自PHP的資料並存成String
+            InputStream is = conn.getInputStream();
+            byte[] b = new byte[1024];
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            while(is.read(b) != -1){
+                baos.write(b);
+            }
+            String Resp = new String(baos.toByteArray());
+            Log.e("安安", Resp );
+
             conn.connect();
 
         } catch (MalformedURLException e) {
