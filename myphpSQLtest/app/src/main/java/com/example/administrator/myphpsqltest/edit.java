@@ -3,11 +3,9 @@ package com.example.administrator.myphpsqltest;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class edit extends AppCompatActivity {
 
@@ -18,7 +16,7 @@ public class edit extends AppCompatActivity {
     myinsert mmyinsert;
     Bundle bdata;
     String queryname,type;
-    editdata mmyeditdata;
+    load_and_editdata mmyeditdata;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +34,7 @@ public class edit extends AppCompatActivity {
 
         // 因為新增和修改在同一頁，所以才有這判斷式
         if(type.equals("edit")){
-            mmyeditdata = new editdata(thisactivity,null,queryname);
+            mmyeditdata = new load_and_editdata(thisactivity,null,queryname);
             // 連query.php囉
             mmyeditdata.execute("https://empurpled-nomenclat.000webhostapp.com/php/query.php");
         }

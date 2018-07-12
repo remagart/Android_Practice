@@ -16,7 +16,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
-public class editdata extends AsyncTask<String,Void,String> {
+public class load_and_editdata extends AsyncTask<String,Void,String> {
 
     ProgressDialog mydialog;
     Context thisactivity;
@@ -27,7 +27,7 @@ public class editdata extends AsyncTask<String,Void,String> {
     String name;
     String[] getdata;
 
-    editdata(Context c,String[] data,String queryname){
+    load_and_editdata(Context c, String[] data, String queryname){
         thisactivity = c;
         getdata = data;
         this.queryname = queryname;
