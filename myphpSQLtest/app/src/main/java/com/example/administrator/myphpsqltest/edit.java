@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.concurrent.ExecutionException;
+
 public class edit extends AppCompatActivity {
 
     Context thisactivity;
@@ -17,6 +19,7 @@ public class edit extends AppCompatActivity {
     Bundle bdata;
     String queryname,type;
     load_and_editdata mmyeditdata;
+    String[] old_data = new String[4];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +39,18 @@ public class edit extends AppCompatActivity {
         if(type.equals("edit")){
             mmyeditdata = new load_and_editdata(thisactivity,null,queryname);
             // 連query.php囉
-            mmyeditdata.execute("https://empurpled-nomenclat.000webhostapp.com/php/query.php");
+            try {
+                old_data = mmyeditdata.execute("https://empurpled-nomenclat.000webhostapp.com/php/query.php").get();
+                newname.setText(old_data[1]);
+                newtel.setText(old_data[2]);
+                newmail.setText(old_data[3]);
+                newbirth.setText(old_data[4]);
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
         }
 
 

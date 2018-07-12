@@ -99,13 +99,14 @@ public class load_and_editdata extends AsyncTask<String,Void,String[]> {
     }
     // 將JSON物件轉為String陣列並傳回
     String[] convert(JSONObject jobj) throws JSONException {
-        String name,tel,email,birth;
+        String id,name,tel,email,birth;
+        id = jobj.getString("ContactID");
         name = jobj.getString("Name");
         tel = jobj.getString("Phone");
         email = jobj.getString("Email");
         birth = jobj.getString("Birthday");
 
-        String[] old_data = new String[]{name,tel,email,birth};
+        String[] old_data = new String[]{id,name,tel,email,birth};
 
         return old_data;
     }
