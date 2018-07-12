@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -53,6 +54,20 @@ public class MainActivity extends AppCompatActivity {
             mylist.setVisibility(View.VISIBLE);
             nodata.setVisibility(View.INVISIBLE);
         }
+
+
+        //要做點選項的事件處理
+        mylist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent();
+                i.putExtra("name",myallcontact.get(position).getMyname());
+                i.putExtra("type","edit");
+                i.putExtra("title","編輯朋友");
+                i.setClass(thisactivity,edit.class);
+                startActivity(i);
+            }
+        });
 
 
     }

@@ -16,6 +16,8 @@ public class edit extends AppCompatActivity {
     Button btn_OK;
     String[] all;
     myinsert mmyinsert;
+    Bundle bdata;
+    String queryname,type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,14 @@ public class edit extends AppCompatActivity {
         thisactivity = this;
 
         init();
+
+        //針對編輯做處理
+        bdata = this.getIntent().getExtras();
+        this.setTitle(bdata.getString("title"));
+        queryname = bdata.getString("name");
+        type = bdata.getString("type");
+
+
         all = new String[4];
 
         btn_OK.setOnClickListener(new View.OnClickListener() {

@@ -34,11 +34,14 @@ public class editdata extends AsyncTask<String,Void,String> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+        mydialog.setMessage("連線中");
+        mydialog.show();
     }
 
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
+        mydialog.dismiss();
     }
 
     @Override
