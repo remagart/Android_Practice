@@ -18,6 +18,7 @@ public class edit extends AppCompatActivity {
     myinsert mmyinsert;
     Bundle bdata;
     String queryname,type;
+    editdata mmyeditdata;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,13 @@ public class edit extends AppCompatActivity {
         this.setTitle(bdata.getString("title"));
         queryname = bdata.getString("name");
         type = bdata.getString("type");
+
+        // 因為新增和修改在同一頁，所以才有這判斷式
+        if(type.equals("edit")){
+            mmyeditdata = new editdata(thisactivity,null,queryname);
+            // 連query.php囉
+            mmyeditdata.execute("https://empurpled-nomenclat.000webhostapp.com/php/query.php");
+        }
 
 
         all = new String[4];
