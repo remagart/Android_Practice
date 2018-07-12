@@ -2,11 +2,16 @@ package com.example.administrator.myphpsqltest;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -37,6 +42,12 @@ public class updatedata extends AsyncTask<String,Void,String> {
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
         mydialog.dismiss();
+        int isSuccess= 0;
+        isSuccess = s.indexOf("edit Success");
+        if(isSuccess != -1)
+            Toast.makeText(thisactivity,"成功更新一筆資料",Toast.LENGTH_LONG).show();
+        Intent i = new Intent(thisactivity, MainActivity.class);
+        thisactivity.startActivity(i);
     }
 
     @Override
@@ -90,7 +101,16 @@ public class updatedata extends AsyncTask<String,Void,String> {
 
             conn.connect();
 
+            InputStream is = conn.getInputStream();
+            byte[] b = new byte[1024];
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            while (is.read(b) != -1){
+                baos.write(b);
+            }
 
+            String response = new String(baos.toByteArray());
+            Log.e("嘿嘿", response);
+            return response;
 
         } catch (MalformedURLException e) {
             e.printStackTrace();

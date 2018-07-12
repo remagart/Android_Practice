@@ -20,6 +20,7 @@ public class edit extends AppCompatActivity {
     String queryname,type;
     load_and_editdata mmyeditdata;
     String[] old_data = new String[4];
+    updatedata mmyupdatedata;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +60,23 @@ public class edit extends AppCompatActivity {
         btn_OK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                all[0]= newname.getText().toString();
-                all[1] = newtel.getText().toString();
-                all[2] = newmail.getText().toString();
-                all[3] = newbirth.getText().toString();
-                mmyinsert = new myinsert(thisactivity,all);
-                mmyinsert.execute("https://empurpled-nomenclat.000webhostapp.com/php/insert.php");
+                if(type.equals("add")){
+                    all[0]= newname.getText().toString();
+                    all[1] = newtel.getText().toString();
+                    all[2] = newmail.getText().toString();
+                    all[3] = newbirth.getText().toString();
+                    mmyinsert = new myinsert(thisactivity,all);
+                    mmyinsert.execute("https://empurpled-nomenclat.000webhostapp.com/php/insert.php");
+                }
+                else if(type.equals("edit")){
+                    old_data[1] = newname.getText().toString();
+                    old_data[2] = newtel.getText().toString();
+                    old_data[3] = newmail.getText().toString();
+                    old_data[4] = newbirth.getText().toString();
+                    mmyupdatedata = new updatedata(thisactivity,old_data);
+                    mmyupdatedata.execute("https://empurpled-nomenclat.000webhostapp.com/php/update.php");
+                }
+
             }
         });
 

@@ -88,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent i = new Intent();
         i.setClass(thisactivity,edit.class);
+        i.putExtra("type","add");
         startActivity(i);
         return super.onOptionsItemSelected(item);
     }
