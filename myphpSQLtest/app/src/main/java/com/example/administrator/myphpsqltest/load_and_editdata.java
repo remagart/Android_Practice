@@ -5,6 +5,9 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -16,7 +19,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
-public class load_and_editdata extends AsyncTask<String,Void,String> {
+public class load_and_editdata extends AsyncTask<String,Void,String[]> {
 
     ProgressDialog mydialog;
     Context thisactivity;
@@ -42,13 +45,13 @@ public class load_and_editdata extends AsyncTask<String,Void,String> {
     }
 
     @Override
-    protected void onPostExecute(String s) {
+    protected void onPostExecute(String[] s) {
         super.onPostExecute(s);
         mydialog.dismiss();
     }
 
     @Override
-    protected String doInBackground(String... temps) {
+    protected String[] doInBackground(String... temps) {
         try {
             URL u = new URL(temps[0]);
             HttpURLConnection conn = (HttpURLConnection) u.openConnection();
@@ -77,13 +80,33 @@ public class load_and_editdata extends AsyncTask<String,Void,String> {
 
             conn.connect();
 
+            // 將JSON物件轉為String陣列並傳回
+            JSONObject arr = new JSONObject(Resp);
+            String[] old_data = convert(arr);
+            return old_data;
+
+
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
             e.printStackTrace();
         }
 
 
         return null;
+    }
+    // 將JSON物件轉為String陣列並傳回
+    String[] convert(JSONObject jobj) throws JSONException {
+        String name,tel,email,birth;
+        name = jobj.getString("Name");
+        tel = jobj.getString("Phone");
+        email = jobj.getString("Email");
+        birth = jobj.getString("Birthday");
+
+        String[] old_data = new String[]{name,tel,email,birth};
+
+        return old_data;
     }
 }
