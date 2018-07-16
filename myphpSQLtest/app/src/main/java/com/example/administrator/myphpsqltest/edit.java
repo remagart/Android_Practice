@@ -33,10 +33,12 @@ public class edit extends AppCompatActivity {
     load_and_editdata mmyeditdata;
     String[] old_data = new String[4];
     updatedata mmyupdatedata;
+
     final static int PICK_IMAGE = 1;
     String picturepath;
     Bitmap mybitmap;
     ImageView myimage;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,15 +79,19 @@ public class edit extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent();
+
                 if(type.equals("add")){
                     all[0]= newname.getText().toString();
                     all[1] = newtel.getText().toString();
                     all[2] = newmail.getText().toString();
                     all[3] = newbirth.getText().toString();
+
                     mmyinsert = new myinsert(thisactivity,all,picturepath);
                     mmyinsert.execute("https://empurpled-nomenclat.000webhostapp.com/php/insert.php");
                     i.setClass(thisactivity,MainActivity.class);
                     startActivity(i);
+
+
                 }
                 else if(type.equals("edit")){
                     old_data[1] = newname.getText().toString();
@@ -94,8 +100,10 @@ public class edit extends AppCompatActivity {
                     old_data[4] = newbirth.getText().toString();
                     mmyupdatedata = new updatedata(thisactivity,old_data);
                     mmyupdatedata.execute("https://empurpled-nomenclat.000webhostapp.com/php/update.php");
+
                     i.setClass(thisactivity,MainActivity.class);
                     startActivity(i);
+
                 }
 
             }
