@@ -3,6 +3,7 @@ package com.example.administrator.myphpsqltest;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -44,7 +45,7 @@ public class myinsert extends AsyncTask<String,Void,String> {
             request.writeBytes(this.twoHyphens + this.boundary + this.crlf);
             request.writeBytes("Content-Disposition: form-data; name=\"Name\"" + "\"" + this.crlf);
             request.writeBytes(this.crlf);
-            request.writeBytes(data[0]);
+            request.write(data[0].getBytes());
             request.writeBytes(this.crlf);
             request.writeBytes(this.twoHyphens + this.boundary + this.crlf);
             request.writeBytes("Content-Disposition: form-data; name=\"Phone\"" + "\"" + this.crlf);
@@ -76,7 +77,7 @@ public class myinsert extends AsyncTask<String,Void,String> {
                 baos.write(b);
 
             String response = new String(baos.toByteArray());
-            Log.i("response=", response);
+            Log.e("response=", response);
             return response;
 
 

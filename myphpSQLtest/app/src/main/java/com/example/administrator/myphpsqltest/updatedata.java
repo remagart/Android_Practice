@@ -74,7 +74,7 @@ public class updatedata extends AsyncTask<String,Void,String> {
             request.writeBytes(this.twoHyphens + this.boundary + this.crlf);
             request.writeBytes("Content-Disposition: form-data; name=\"Name\"" + "\"" + this.crlf);
             request.writeBytes(this.crlf);
-            request.writeBytes(newdata[1]);
+            request.write(newdata[1].getBytes());
             request.writeBytes(this.crlf);
             /*Phone*/
             request.writeBytes(this.twoHyphens + this.boundary + this.crlf);

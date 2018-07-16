@@ -1,11 +1,13 @@
 package com.example.administrator.myphpsqltest;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.concurrent.ExecutionException;
 
@@ -60,6 +62,7 @@ public class edit extends AppCompatActivity {
         btn_OK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent i = new Intent();
                 if(type.equals("add")){
                     all[0]= newname.getText().toString();
                     all[1] = newtel.getText().toString();
@@ -67,6 +70,8 @@ public class edit extends AppCompatActivity {
                     all[3] = newbirth.getText().toString();
                     mmyinsert = new myinsert(thisactivity,all);
                     mmyinsert.execute("https://empurpled-nomenclat.000webhostapp.com/php/insert.php");
+                    i.setClass(thisactivity,MainActivity.class);
+                    startActivity(i);
                 }
                 else if(type.equals("edit")){
                     old_data[1] = newname.getText().toString();
@@ -75,6 +80,8 @@ public class edit extends AppCompatActivity {
                     old_data[4] = newbirth.getText().toString();
                     mmyupdatedata = new updatedata(thisactivity,old_data);
                     mmyupdatedata.execute("https://empurpled-nomenclat.000webhostapp.com/php/update.php");
+                    i.setClass(thisactivity,MainActivity.class);
+                    startActivity(i);
                 }
 
             }
