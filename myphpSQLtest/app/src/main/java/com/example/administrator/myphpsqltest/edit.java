@@ -1,9 +1,13 @@
 package com.example.administrator.myphpsqltest;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,7 +19,7 @@ public class edit extends AppCompatActivity {
 
     Context thisactivity;
     EditText newname,newtel,newbirth,newmail;
-    Button btn_OK;
+    Button btn_OK,btn_select;
     String[] all;
     myinsert mmyinsert;
     Bundle bdata;
@@ -23,6 +27,7 @@ public class edit extends AppCompatActivity {
     load_and_editdata mmyeditdata;
     String[] old_data = new String[4];
     updatedata mmyupdatedata;
+    final static int PICK_IMAGE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +92,12 @@ public class edit extends AppCompatActivity {
             }
         });
 
+        btn_select.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myselectfromgallery();
+            }
+        });
 
 
     }
@@ -96,7 +107,30 @@ public class edit extends AppCompatActivity {
         newbirth = (EditText)findViewById(R.id.editxml_birth);
         newmail = (EditText)findViewById(R.id.editxml_mail);
         btn_OK = (Button)findViewById(R.id.editxml_btn_confirm);
+        btn_select = (Button)findViewById(R.id.my_btn_select);
 
+    }
+
+    void myselectfromgallery(){
+        if(Build.VERSION.SDK_INT < 19){
+
+        }
+        else{
+            Intent i = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+            i.addCategory(Intent.CATEGORY_OPENABLE);
+            i.setType("image/*");
+            startActivityForResult(i,PICK_IMAGE);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode != Activity.RESULT_OK)
+                return;
+        if(requestCode == PICK_IMAGE && resultCode == Activity.RESULT_OK && data != null){
+            Uri selectimage = data.getData();
+        }
 
     }
 }
