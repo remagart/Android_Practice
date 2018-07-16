@@ -3,8 +3,11 @@ package com.example.administrator.myphpsqltest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,6 +31,7 @@ public class edit extends AppCompatActivity {
     String[] old_data = new String[4];
     updatedata mmyupdatedata;
     final static int PICK_IMAGE = 1;
+    String picturepath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,7 +134,30 @@ public class edit extends AppCompatActivity {
                 return;
         if(requestCode == PICK_IMAGE && resultCode == Activity.RESULT_OK && data != null){
             Uri selectimage = data.getData();
+            String myid = selectimage.getLastPathSegment().split(":")[1];
+            String[] imagecolumn = {MediaStore.Images.Media.DATA};
+            String imagebyorder = null;
+
+            Uri u = getUri();
+            picturepath = "path";
+            Cursor imagecur = getContentResolver().query(u,imagecolumn,
+                    MediaStore.Images.Media._ID+" = "+myid,
+                    null,
+                    imagebyorder);
+
+            if(imagecur.moveToFirst()){
+                picturepath = imagecur.getString(imagecur.getColumnIndex(MediaStore.Images.Media.DATA));
+            }
+
         }
 
     }
+    Uri getUri(){
+        String state = Environment.getExternalStorageState();
+        if(!state.equalsIgnoreCase(Environment.MEDIA_MOUNTED)){
+            return MediaStore.Images.Media.INTERNAL_CONTENT_URI;
+        }
+        return MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+    }
+
 }
