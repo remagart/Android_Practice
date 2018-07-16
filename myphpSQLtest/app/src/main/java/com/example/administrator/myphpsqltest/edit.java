@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -14,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.concurrent.ExecutionException;
@@ -32,6 +35,8 @@ public class edit extends AppCompatActivity {
     updatedata mmyupdatedata;
     final static int PICK_IMAGE = 1;
     String picturepath;
+    Bitmap mybitmap;
+    ImageView myimage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +117,7 @@ public class edit extends AppCompatActivity {
         newmail = (EditText)findViewById(R.id.editxml_mail);
         btn_OK = (Button)findViewById(R.id.editxml_btn_confirm);
         btn_select = (Button)findViewById(R.id.my_btn_select);
+        myimage = (ImageView)findViewById(R.id.myimg);
 
     }
 
@@ -149,6 +155,7 @@ public class edit extends AppCompatActivity {
                 picturepath = imagecur.getString(imagecur.getColumnIndex(MediaStore.Images.Media.DATA));
             }
 
+            decodeFile(picturepath);
         }
 
     }
@@ -158,6 +165,31 @@ public class edit extends AppCompatActivity {
             return MediaStore.Images.Media.INTERNAL_CONTENT_URI;
         }
         return MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+    }
+
+    void decodeFile(String filepath){
+        BitmapFactory.Options o = new BitmapFactory.Options();
+        o.inJustDecodeBounds = true;
+        o.inSampleSize = 1;
+        int Roundsize = 1024;
+        int tmp_width = o.outWidth;
+        int tmp_height = o.outHeight;
+        int scale = 1;
+        while(true){
+            if(tmp_width < Roundsize && tmp_height < Roundsize){
+                break;
+            }
+            tmp_height /= 2;
+            tmp_width /= 2;
+            scale *= 2;
+        }
+        BitmapFactory.Options o2 = new BitmapFactory.Options();
+        o2.inSampleSize = scale;
+        mybitmap = BitmapFactory.decodeFile(filepath,o2);
+
+        myimage.setImageBitmap(mybitmap);
+
+
     }
 
 }
