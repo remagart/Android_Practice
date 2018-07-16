@@ -82,7 +82,7 @@ public class edit extends AppCompatActivity {
                     all[1] = newtel.getText().toString();
                     all[2] = newmail.getText().toString();
                     all[3] = newbirth.getText().toString();
-                    mmyinsert = new myinsert(thisactivity,all);
+                    mmyinsert = new myinsert(thisactivity,all,picturepath);
                     mmyinsert.execute("https://empurpled-nomenclat.000webhostapp.com/php/insert.php");
                     i.setClass(thisactivity,MainActivity.class);
                     startActivity(i);

@@ -20,10 +20,12 @@ public class myinsert extends AsyncTask<String,Void,String> {
     String twoHyphens = "--";
     String boundary =  "*****";
     String[] data;
+    String attachment;
 
-    public myinsert(Context c,String[] temp_data) {
+    public myinsert(Context c,String[] temp_data,String path) {
         thisactivity = c;
         data = temp_data;
+        attachment = path;
     }
 
     @Override

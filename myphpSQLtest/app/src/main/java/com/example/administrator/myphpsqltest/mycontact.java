@@ -10,11 +10,12 @@ public class mycontact {
     private String mybirth;
 
     mycontact(){}
-    mycontact(String name,String tel,String email,String birth){
+    mycontact(Bitmap img,String name,String tel,String email,String birth){
         myname = name;
         mytel = tel;
         myemail = email;
         mybirth = birth;
+        myimg = img;
     }
 
     public Bitmap getMyimg() {

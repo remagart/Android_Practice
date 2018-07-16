@@ -91,7 +91,7 @@ public class myconnect extends AsyncTask<String,Void,ArrayList<mycontact>> {
         email = jobj.getString("Email");
         birth = jobj.getString("Birthday");
 
-        return new mycontact(name,tel,email,birth);
+        return new mycontact(null,name,tel,email,birth);
     }
 
 }
