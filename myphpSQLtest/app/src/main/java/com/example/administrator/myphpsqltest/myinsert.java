@@ -7,6 +7,8 @@ import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -21,6 +23,9 @@ public class myinsert extends AsyncTask<String,Void,String> {
     String boundary =  "*****";
     String[] data;
     String attachment;
+    int bytesRead, bytesAvailable, bufferSize;
+    byte[] buffer;
+    int maxBufferSize = 1 * 1024 * 1024;
 
     public myinsert(Context c,String[] temp_data,String path) {
         thisactivity = c;
@@ -43,6 +48,34 @@ public class myinsert extends AsyncTask<String,Void,String> {
             conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + this.boundary);
             conn.setRequestProperty("Charset", "UTF-8");
             DataOutputStream request = new DataOutputStream(conn.getOutputStream());
+////////////////////////////////////////////////
+            if(this.attachment != null) {
+                File sourceFile = new File(attachment);
+                FileInputStream fileInputStream = new FileInputStream(sourceFile);
+                request.writeBytes(this.twoHyphens + this.boundary + this.crlf);
+                request.writeBytes("Content-Disposition: form-data; name=\"uploaded_file\";filename=\"" + this.attachment + "\"" + this.crlf);
+                request.writeBytes(this.crlf);
+
+                bytesAvailable = fileInputStream.available();
+                //比較圖檔大小是否大於1024*1024，選擇較小圖檔上傳
+                bufferSize = Math.min(bytesAvailable, maxBufferSize);
+                buffer = new byte[bufferSize];
+                ///雖然下載下來但沒有這段下載的圖就沒有解析 >>/
+                // 讀取檔案
+                bytesRead = fileInputStream.read(buffer, 0, bufferSize);
+                //寫入串流
+                while (bytesRead > 0) {
+
+                    request.write(buffer, 0, bufferSize);
+                    bytesAvailable = fileInputStream.available();
+                    bufferSize = Math.min(bytesAvailable, maxBufferSize);
+                    bytesRead = fileInputStream.read(buffer, 0, bufferSize);
+
+                }
+                ///雖然下載下來但沒有這段下載的圖就沒有解析 <</
+                request.write(buffer);
+                request.writeBytes(this.crlf); //與下一個欄位分隔的斷行
+            }
 ////////////////////////////////////////////////
             request.writeBytes(this.twoHyphens + this.boundary + this.crlf);
             request.writeBytes("Content-Disposition: form-data; name=\"Name\"" + "\"" + this.crlf);

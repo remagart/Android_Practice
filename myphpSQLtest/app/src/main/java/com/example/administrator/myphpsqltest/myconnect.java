@@ -2,6 +2,9 @@ package com.example.administrator.myphpsqltest;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ProgressBar;
@@ -91,7 +94,40 @@ public class myconnect extends AsyncTask<String,Void,ArrayList<mycontact>> {
         email = jobj.getString("Email");
         birth = jobj.getString("Birthday");
 
-        return new mycontact(null,name,tel,email,birth);
+        Bitmap mybitmap = null;
+        if(jobj.getString("Picture") != null){
+            mybitmap = myloadimage("https://empurpled-nomenclat.000webhostapp.com/php/images/"+
+                    jobj.getString("Picture"));
+        }
+        else{
+            Toast.makeText(thisactivity, "沒有圖片", Toast.LENGTH_SHORT).show();
+        }
+
+        return new mycontact(mybitmap,name,tel,email,birth);
+    }
+
+    Bitmap myloadimage(String imageuri){
+        Bitmap myimage = null;
+        try {
+            URL u = new URL(imageuri);
+            HttpURLConnection conn = (HttpURLConnection) u.openConnection();
+            conn.setRequestMethod("GET");
+            conn.connect();
+
+            if(conn.getResponseCode() == HttpURLConnection.HTTP_OK){
+                InputStream is = conn.getInputStream();
+                myimage = BitmapFactory.decodeStream(is);
+                is.close();
+                return myimage;
+            }
+
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return myimage;
     }
 
 }
