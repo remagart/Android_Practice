@@ -3,7 +3,6 @@ package com.example.administrator.myphpsqltest;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -15,7 +14,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class myinsert extends AsyncTask<String,Void,String> {
+public class myinsert extends AsyncTask<String,Void,Void> {
 
     Context thisactivity;
     String crlf = "\r\n";
@@ -34,7 +33,7 @@ public class myinsert extends AsyncTask<String,Void,String> {
     }
 
     @Override
-    protected String doInBackground(String... temp) {
+    protected Void doInBackground(String... temp) {
         URL u = null;
         try {
             u = new URL(temp[0]);
@@ -113,7 +112,7 @@ public class myinsert extends AsyncTask<String,Void,String> {
 
             String response = new String(baos.toByteArray());
             Log.e("response=", response);
-            return response;
+            //return response;
 
 
         } catch (MalformedURLException e) {
@@ -122,6 +121,7 @@ public class myinsert extends AsyncTask<String,Void,String> {
             e.printStackTrace();
         }
 
+        //return null;
         return null;
     }
 }
