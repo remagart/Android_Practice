@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">mylist_SQLite</string>
+    <string name="title_activity_show">show</string>
+</resources>
