@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/listdetailxml_layout"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="30dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/listdetailxml_textview_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="日期"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/listdetailxml_textview_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="標題"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/listdetailxml_textview_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="內容"
+        android:singleLine="false"
+        android:textSize="30sp" />
+
+</LinearLayout>

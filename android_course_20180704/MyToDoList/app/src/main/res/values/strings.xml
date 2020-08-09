@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MyToDoList</string>
+    <string name="title_activity_all_content">all_content</string>
+</resources>
