@@ -1,9 +1,9 @@
 # Android_Practice
-This is practice for Android with Java. 
+These are practices for Android with Java. 
 
 
 
-## Sorted the project that I even finished
+## Sorted the projects that I even finished
 
 - android_HW4_datepicker_20180626
 - android_practice_mydialog_20180621
@@ -14,6 +14,7 @@ This is practice for Android with Java.
 - android_course_20180704 
 - android_course_20180705 
 - android_course_20180706
+- Android-with-java-practice
 
 
 
